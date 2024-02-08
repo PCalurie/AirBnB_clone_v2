@@ -114,42 +114,38 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """Create an object of any class with given parameters"""
+        """ Create an object of any class"""
         if not args:
             print("** class name missing **")
             return
 
-        # Split the command line arguments
         args_list = args.split()
-
-        # Get the class name and remove it from the list
-        class_name = args_list[0]
-        args_list = args_list[1:]
-
-        # Check if the class exists
-        if class_name not in HBNBCommand.classes:
+        if args_list[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+        # create State name="California"
+        # create User email=1.1 pwassword="aasdasd"
 
-        # Create an instance of the specified class
-        new_instance = HBNBCommand.classes[class_name]()
-
-        # Parse and set the parameters
-        for param in args_list:
-            try:
-                key, value = param.split('=')
-                if value.startswith('"') and value.endswith('"'):
-                    value = value[1:-1]
-                    value = value.replace('_', ' ')
-                    value = value.replace('\\', '"')
-                setattr(new_instance, key, value)
-            except Exception as e:
-                print(f"Error parsing parameter '{param}': {e}")
-
-        # Save the new instance
-        storage.save()
+        args_dict = {}
+        for attribute in args_list[1:]:
+            if '=' in attribute:
+                attr_list = attribute.split("=")
+                if attr_list[1][0] == '"' and attr_list[1][-1] == '"':
+                    attr_value = attr_list[1].strip('"').replace('_', ' ')
+                elif attr_list[1].isdigit():
+                    attr_value = int(attr_list[1])
+                else:
+                    try:
+                        attr_value = float(attr_list[1])
+                    except Exception:
+                        continue
+                args_dict[attr_list[0]] = attr_value
+        if args_dict == {}:
+            new_instance = HBNBCommand.classes[args_list[0]]()
+        else:
+            new_instance = HBNBCommand.classes[args_list[0]](**args_dict)
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
@@ -212,7 +208,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -231,11 +227,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all(HBNBCommand.classes[args]).items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
 
         print(print_list)

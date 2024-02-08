@@ -164,5 +164,37 @@
     "updated_at": "2024-02-07T19:51:16.852255",
     "name": "Nevada",
     "__class__": "State"
+  },
+  "State.05afefd4-f166-4ef7-8f6c-8b523597c33d": {
+    "id": "05afefd4-f166-4ef7-8f6c-8b523597c33d",
+    "created_at": "2024-02-07T22:07:18.464951",
+    "updated_at": "2024-02-07T22:07:18.464989",
+    "__class__": "State"
+  },
+  "State.a08ee3f4-b618-458a-a31c-066bd0972fc5": {
+    "id": "a08ee3f4-b618-458a-a31c-066bd0972fc5",
+    "created_at": "2024-02-07T22:07:19.679438",
+    "updated_at": "2024-02-07T22:07:19.679450",
+    "__class__": "State"
+  },
+  "State.09fa217d-496a-47e6-81e9-97f7f04b705a": {
+    "id": "09fa217d-496a-47e6-81e9-97f7f04b705a",
+    "created_at": "2024-02-07T22:07:20.312534",
+    "updated_at": "2024-02-07T22:07:20.312546",
+    "__class__": "State"
+  },
+  "State.da0cdab3-db19-4da6-8a88-f0acb426a3e3": {
+    "id": "da0cdab3-db19-4da6-8a88-f0acb426a3e3",
+    "created_at": "2024-02-07T22:07:21.986942",
+    "updated_at": "2024-02-07T22:07:21.986956",
+    "__class__": "State"
+  },
+  "State.a320627d-a922-44c4-942c-a9786e3bd340": {
+    "id": "a320627d-a922-44c4-942c-a9786e3bd340",
+    "created_at": "2024-02-07T22:07:32.279473",
+    "updated_at": "2024-02-07T22:07:32.279505",
+    "name": "fdsa",
+    "num": "32",
+    "__class__": "State"
   }
 }
